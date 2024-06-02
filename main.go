@@ -16,7 +16,7 @@ func main() {
 
 		if err != nil {
 			fmt.Println("Error reading input:", err)
-			return
+			continue
 		}
 
 		input = strings.TrimSpace(input)
@@ -30,7 +30,7 @@ func main() {
 
 		if err != nil {
 			fmt.Println("Error executing command:", err)
-			return
+			continue
 		}
 
 		// Print the output
