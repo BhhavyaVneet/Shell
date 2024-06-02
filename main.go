@@ -9,25 +9,31 @@ import (
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin) 
-    fmt.Print("myshell> ")      
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Print("myshell> ")
+		input, err := reader.ReadString('\n')
 
-    input, err := reader.ReadString('\n') 
-    if err != nil {
-        fmt.Println("Error reading input:", err)
-        return
-    }
+		if err != nil {
+			fmt.Println("Error reading input:", err)
+			return
+		}
 
-    input = strings.TrimSpace(input)
+		input = strings.TrimSpace(input)
 
-	cmd := exec.Command(input)
-	output, err := cmd.Output()
+		if input == "exit"{
+			break
+		}
 
-	if err != nil {
-        fmt.Println("Error executing command:", err)
-        return
-    }
+		cmd := exec.Command(input)
+		output, err := cmd.Output()
 
-    // Print the output
-    fmt.Println(string(output))
+		if err != nil {
+			fmt.Println("Error executing command:", err)
+			return
+		}
+
+		// Print the output
+		fmt.Println(string(output))
+	}
 }
