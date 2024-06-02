@@ -20,12 +20,15 @@ func main() {
 		}
 
 		input = strings.TrimSpace(input)
+		parts := strings.Split(input, " ")
+		command := parts[0]
+		parts = parts[1:]
 
 		if input == "exit"{
 			break
 		}
 
-		cmd := exec.Command(input)
+		cmd := exec.Command(command,parts...)
 		output, err := cmd.Output()
 
 		if err != nil {
