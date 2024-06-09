@@ -24,19 +24,42 @@ func main() {
 		command := parts[0]
 		parts = parts[1:]
 
-		if input == "exit"{
-			break
-		}
+		switch command {
 
-		cmd := exec.Command(command,parts...)
-		output, err := cmd.Output()
+		
+		case "exit":
+			os.Exit(0)
+			
+			
+		case "cd":
+			err = os.Chdir(parts[0])
+			if err != nil {
+				fmt.Println("Error in changing directory:", err)
+			}
 
-		if err != nil {
-			fmt.Println("Error executing command:", err)
 			continue
-		}
+			
+
+		case "pwd" :
+			dir, err := os.Getwd()
+			if err != nil {
+				fmt.Println("Error in changing directory:", err)
+			}
+			fmt.Println("Current working directory:", dir)
+			continue
+				
+			
+		default:
+
+			cmd := exec.Command(command,parts...)
+			output, err := cmd.Output()
+
+			if err != nil {
+				fmt.Println("Error executing command:", err)
+				continue
+			}
 
 		// Print the output
-		fmt.Println(string(output))
+		fmt.Println(string(output))}
 	}
 }
