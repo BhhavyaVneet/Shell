@@ -25,12 +25,10 @@ func main() {
 		parts = parts[1:]
 
 		switch command {
-
 		
 		case "exit":
 			os.Exit(0)
-			
-			
+
 		case "cd":
 			err = os.Chdir(parts[0])
 			if err != nil {
@@ -38,7 +36,6 @@ func main() {
 			}
 
 			continue
-			
 
 		case "pwd" :
 			dir, err := os.Getwd()
@@ -46,8 +43,7 @@ func main() {
 				fmt.Println("Error in changing directory:", err)
 			}
 			fmt.Println("Current working directory:", dir)
-			continue
-				
+			continue		
 			
 		default:
 
